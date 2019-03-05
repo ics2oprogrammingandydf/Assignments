@@ -57,7 +57,7 @@ local scrollSpeed = -3
 --moving the images
 local function MoveGoblin(event)
 	--the scroll speed
-	Goblin.x = Goblin.x + scrollSpeed
+	Goblin.x = Goblin.x + Goblin.y + scrollSpeed
 end
 
 --moveGoblin will be called over and over again
