@@ -15,21 +15,11 @@ local Goblin = display.newImageRect("Images/Goblin.png", 200, 200)
 local Fire = display.newImageRect("Images/fire.png", 200, 200)
 local physics = require("physics")
 --------------------------------------------------------------------------
-physics.start(true)
-local leftWall = display.newRect(0,0,1, display.contentHeight )
-local rightWall = display.newRect (display.contentWidth, 0, 1, display.contentHeight)
-local topWall = display.newRect (0, 0, display.contentWidth, 1)
-
-physics.addBody (leftWall, "static", { bounce = 0.1} )
-physics.addBody (rightWall, "static", { bounce = 0.1} )
-physics.addBody (topWall, "static", { bounce = 0.1} )
---------------------------------------------------------------------------
 --set the X and Y of the Goblin
 Goblin.x = 700
 Goblin.y = display.contentHeight/4
 
---making the Image pyhsical
-physics.addBody (Goblin, "kinematic", {bounce = 0.1} )
+
 
 ---------------------------------------------------------------------------
 --set the x and y of the Runescape Knight
@@ -38,9 +28,6 @@ RunescapeKnight.y = display.contentHeight/2
 
 --changing the way the Runescape Knight faces
 RunescapeKnight:scale (-1, 1)
-
---making the Image physical
-physics.addBody (RunescapeKnight, "kinematic", {bounce = 0.1} )
 ---------------------------------------------------------------------------
 
 --Adding the sounds
@@ -52,12 +39,13 @@ EpicSoundChannel = audio.play(EpicSound)
 
 ---------------------------------------------------------------------------
 --setting the scroll speed of the Goblin
-local scrollSpeed = -3
+local scrollSpeed = 3
 
 --moving the images
 local function MoveGoblin(event)
 	--the scroll speed
-	Goblin.x = Goblin.x + Goblin.y + scrollSpeed
+	Goblin.y = Goblin.y + scrollSpeed
+	Goblin.x = Goblin.x + scrollSpeed
 end
 
 --moveGoblin will be called over and over again
@@ -67,7 +55,7 @@ Runtime:addEventListener("enterFrame", MoveGoblin)
 --setting the scroll speed of the knight
 local scrollSpeed = 3
 
---making the runescape Knight kinda 
+--making the runescape Knight kinda transparent
 RunescapeKnight.alpha = 0.5
 
 --moving the images
@@ -75,7 +63,7 @@ local function moveRunescapeKnight(event)
 	--the scroll speed to the x-value
 	RunescapeKnight.x = RunescapeKnight.x + scrollSpeed
 	--change the transparency of the ship while it's moving
-	RunescapeKnight.alpha = RunescapeKnight.alpha + 0.1
+	RunescapeKnight.alpha = RunescapeKnight.alpha + 0.005
 end
 
 --moveGoblin will be called over and over again
