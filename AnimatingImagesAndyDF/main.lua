@@ -67,11 +67,19 @@ Runtime:addEventListener("enterFrame", MoveGoblin)
 --setting the scroll speed of the knight
 local scrollSpeed = 3
 
+--making the runescape Knight kinda 
+RunescapeKnight.alpha = 0.5
+
 --moving the images
 local function moveRunescapeKnight(event)
-	--the scroll speed
+	--the scroll speed to the x-value
 	RunescapeKnight.x = RunescapeKnight.x + scrollSpeed
+	--change the transparency of the ship while it's moving
+	RunescapeKnight.alpha = RunescapeKnight.alpha + 0.1
 end
 
 --moveGoblin will be called over and over again
 Runtime:addEventListener("enterFrame", moveRunescapeKnight)
+-----------------------------------------------------------------------------
+
+
