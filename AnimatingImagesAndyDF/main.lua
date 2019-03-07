@@ -70,4 +70,4 @@ end
 Runtime:addEventListener("enterFrame", moveRunescapeKnight)
 -----------------------------------------------------------------------------
 
-
+RunescapeKnight:scale(1, 1)
