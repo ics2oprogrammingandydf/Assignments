@@ -69,5 +69,3 @@ end
 --moveGoblin will be called over and over again
 Runtime:addEventListener("enterFrame", moveRunescapeKnight)
 -----------------------------------------------------------------------------
-
-RunescapeKnight:scale(1, 1)
