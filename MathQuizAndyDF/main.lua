@@ -77,7 +77,7 @@ end
 
 
 local function askQuestion()
-	randomOperator = math.random(1, 4)
+	randomOperator = math.random(1, 6)
 	if ( randomOperator == 1) then
 		--generate 2 random numbers between a max. and a min. number
 			randomNumber1 = math.random(0, 10)
@@ -183,7 +183,7 @@ heart2.y =display.contentWidth * 1 / 7
 -- adding the listener
 numericField:addEventListener( "userInput", numericFieldListener)
 
-pointsObject = display.newTextField()
+pointsObject = display.newText("points", display.contentWidth/2, display.contentHeight*2/3, nil,50 )
 
 ----------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
