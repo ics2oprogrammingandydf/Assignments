@@ -97,8 +97,8 @@ local function askQuestion()
 		--create the question in text
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 	elseif ( randomOperator == 3) then
-		randomNumber1 = math.random(0, 10)
-		randomNumber2 = math.random(0, 10)
+		randomNumber1 = math.random(5, 10)
+		randomNumber2 = math.random(0, 5)
 
 		correctAnswer = randomNumber1 / randomNumber2
 
@@ -173,11 +173,11 @@ numericField = native.newTextField( display.contentWidth/2, display.contentHeigh
 numericField.inputType = "number"
 
 heart1 = display.newImageRect("Images/Saradomin_armour_set_(lg)_equipped.png", 100, 100)
-heart1.x = display.contentHeight * 7 / 8
+heart1.x = display.contentHeight * 3 / 8
 heart1.y = display.contentWidth * 1 / 7
 
 heart2 = display.newImageRect("Images/Saradomin_armour_set_(lg)_equipped.png", 100, 100)
-heart2.x = display.contentHeight * 6 / 7
+heart2.x = display.contentHeight * 5 / 7
 heart2.y =display.contentWidth * 1 / 7
 
 -- adding the listener
