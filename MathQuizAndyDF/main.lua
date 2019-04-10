@@ -36,12 +36,11 @@ local heart2
 local incorrectObject
 local pointsObject
 local points
-
 ----------------------------------------------------------------------------------------------
 -- SOUNDS
 ----------------------------------------------------------------------------------------------
 
-local correctSound = audio.loadSound( "Sounds/correctSound.mp3" )
+local correctSound = audio.loadSound( "Sounds/bensound-jazzcomedy.mp3" )
 local correctSoundChannel
 local incorrectSound = audio.loadSound( "Sounds/wrongSound.mp3" )
 local incorrectSoundChannel
@@ -50,29 +49,29 @@ local incorrectSoundChannel
 -- LOCAL FUNCTIONS
 ----------------------------------------------------------------------------------------------
 
-
 local function UpdateTime()
 
 	--decrement the numbers of seconds
-	secondsLeft = secondsLeft .. "5"
+	secondsLeft = secondsLeft .. ""
 
 	if ( secondsLeft == 0 ) then
 		--resets the number of seconds
 		secondsLeft = totalSeconds
 		lives = lives - 1
-		if (lives == 0) then
-			incorrectSoundChannel = audio.play(wrongSound)
-		elseif (lives == 2) then
+
+		if (lives == 2) then
 			heart2.isVisible = false
 		elseif (lives == 1) then
 			heart1.isVisible = false
-	end end
+		end
+	end
 end
 
 --function that calls the timer
 local function StartTimer()
 	--create the contdown timer thaty loops infinitely
 	countDownTimer = tiemr.performWithDelay( 1000, UpdateTime, 0)
+
 end
 
 
@@ -82,13 +81,12 @@ local function askQuestion()
 		--generate 2 random numbers between a max. and a min. number
 			randomNumber1 = math.random(0, 10)
 			randomNumber2 = math.random(0, 10)
-
 			correctAnswer = randomNumber1 * randomNumber2
 
 			--create the question in text
 			questionObject.text = randomNumber1 .. " x " .. randomNumber2 .. " = "
 	elseif ( randomOperator == 2) then
-		--generate 2 random numbers between a max. and a min. number
+		--generate 2 random numbers between a max. and a min. randomNumber2
 		randomNumber1 = math.random(0, 10)
 		randomNumber2 = math.random(0, 10)
 
@@ -97,21 +95,27 @@ local function askQuestion()
 		--create the question in text
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 	elseif ( randomOperator == 3) then
-		randomNumber1 = math.random(0, 10)
-		randomNumber2 = math.random(0, 10)
+		randomNumber1 = math.random(0, 20)
+		randomNumber2 = math.random(0, 20)
 
 		correctAnswer = randomNumber1 / randomNumber2
 
 		--create the question in text
-		questionObject.text = randomNumber1 .. " ÷ " .. randomNumber2 .. " = "
+		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
 	elseif (randomOperator == 4) then
 		randomNumber1 = math.random(5, 10)
 		randomNumber2 = math.random(0, 5)
 
-		correctAnswer = randomNumber1 - randomNumber2
-
 		--create the question in text
-		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+		questionObject.text = randomNumber1 .. " ÷ " .. randomNumber2 .. " = "
+		randomNumber1 = math.random(1, 100)
+		randomNumber2 = math.random(1, 100)
+
+		print( math.round( correctAnswer) )
+			
+		correctAnswer = math.round( correctAnswer )
+
+		correctAnswer = randomNumber1 / randomNumber2
 	end
 end
 
@@ -152,6 +156,8 @@ local function numericFieldListener( event )
 	end
 end
 
+
+
 -------------------------------------------------------------------------------------------
 -- OBJECT CREATION
 -------------------------------------------------------------------------------------------
@@ -180,9 +186,17 @@ heart2 = display.newImageRect("Images/Saradomin_armour_set_(lg)_equipped.png", 1
 heart2.x = display.contentHeight * 6 / 7
 heart2.y =display.contentWidth * 1 / 7
 
+heart3 = display.newImageRect("Images/Saradomin_armour_set_(lg)_equipped.png", 100, 100)
+heart3.x = display.contentHeight * 5 / 6
+heart3.y =display.contentWidth * 1 / 7
+
+
 -- adding the listener
 numericField:addEventListener( "userInput", numericFieldListener)
 
+clockText = display.newText( "" .. secondsLeft .. "", display.contentHeight*2/3, display.contentWidth/1)
+
+pointsObject = display.newText( "" .. points .. "", display.contentHeight*2.5/3, display.contentWidth/1)
 pointsObject = display.newTextField()
 
 ----------------------------------------------------------------------------------------------
@@ -190,4 +204,5 @@ pointsObject = display.newTextField()
 ----------------------------------------------------------------------------------------------
 
 -- call the function to ask the question
+StartTimer()
 askQuestion()
