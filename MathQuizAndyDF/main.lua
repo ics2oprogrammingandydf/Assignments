@@ -76,7 +76,7 @@ end
 
 
 local function askQuestion()
-	randomOperator = math.random(1, 4)
+	randomOperator = math.random(1, 6)
 	if ( randomOperator == 1) then
 		--generate 2 random numbers between a max. and a min. number
 			randomNumber1 = math.random(0, 10)
@@ -95,8 +95,13 @@ local function askQuestion()
 		--create the question in text
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 	elseif ( randomOperator == 3) then
+
 		randomNumber1 = math.random(0, 20)
 		randomNumber2 = math.random(0, 20)
+
+		randomNumber1 = math.random(5, 10)
+		randomNumber2 = math.random(0, 5)
+
 
 		correctAnswer = randomNumber1 / randomNumber2
 
@@ -179,11 +184,11 @@ numericField = native.newTextField( display.contentWidth/2, display.contentHeigh
 numericField.inputType = "number"
 
 heart1 = display.newImageRect("Images/Saradomin_armour_set_(lg)_equipped.png", 100, 100)
-heart1.x = display.contentHeight * 7 / 8
+heart1.x = display.contentHeight * 3 / 8
 heart1.y = display.contentWidth * 1 / 7
 
 heart2 = display.newImageRect("Images/Saradomin_armour_set_(lg)_equipped.png", 100, 100)
-heart2.x = display.contentHeight * 6 / 7
+heart2.x = display.contentHeight * 5 / 7
 heart2.y =display.contentWidth * 1 / 7
 
 heart3 = display.newImageRect("Images/Saradomin_armour_set_(lg)_equipped.png", 100, 100)
@@ -194,10 +199,13 @@ heart3.y =display.contentWidth * 1 / 7
 -- adding the listener
 numericField:addEventListener( "userInput", numericFieldListener)
 
+
 clockText = display.newText( "" .. secondsLeft .. "", display.contentHeight*2/3, display.contentWidth/1)
 
 pointsObject = display.newText( "" .. points .. "", display.contentHeight*2.5/3, display.contentWidth/1)
 pointsObject = display.newTextField()
+
+pointsObject = display.newText("points", display.contentWidth/2, display.contentHeight*2/3, nil,50 )
 
 ----------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
